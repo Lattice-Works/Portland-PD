@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.openlattice:rhizome-client:0.0.8-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.openlattice/rhizome-client/0.0.8-SNAPSHOT/ee5e3a327fd7d4d19db59591bd20f053f7822f77/rhizome-client-0.0.8-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.openlattice/rhizome-client/0.0.8-SNAPSHOT/2d8910a9e3259fa1f4bc47f01b9ace38d73be19b/rhizome-client-0.0.8-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.openlattice/rhizome-client/0.0.8-SNAPSHOT/8592c82d4c2d666e3f64021e341163bfe362f6f2/rhizome-client-0.0.8-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

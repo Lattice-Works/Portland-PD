@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.openlattice:api:0.0.8-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.openlattice/api/0.0.8-SNAPSHOT/ba59e7b8bad0b62a1de45a1b7632f1234921cee0/api-0.0.8-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.openlattice/api/0.0.8-SNAPSHOT/576102f1e9b488857d36a71d2bf810f240b94996/api-0.0.8-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.openlattice/api/0.0.8-SNAPSHOT/3f17640dbaf1b6ec617c3da13c1a691355819741/api-0.0.8-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
