@@ -18,9 +18,7 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 //TODO: Use credentials from environment variables.
-run.args = [
-//        '/Users/jokedurnez/Documents/data/arrests_report_open_lattice.csv','eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6Impva2VAb3BlbmxhdHRpY2UuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInVzZXJfbWV0YWRhdGEiOnt9LCJhcHBfbWV0YWRhdGEiOnsicm9sZXMiOlsiQXV0aGVudGljYXRlZFVzZXIiLCJhZG1pbiJdfSwibmlja25hbWUiOiJqb2tlIiwicm9sZXMiOlsiQXV0aGVudGljYXRlZFVzZXIiLCJhZG1pbiJdLCJ1c2VyX2lkIjoiZ29vZ2xlLW9hdXRoMnwxMDM3NzE3NTU1NDA4NjUyOTkyNDgiLCJpc3MiOiJodHRwczovL29wZW5sYXR0aWNlLmF1dGgwLmNvbS8iLCJzdWIiOiJnb29nbGUtb2F1dGgyfDEwMzc3MTc1NTU0MDg2NTI5OTI0OCIsImF1ZCI6Im84WTJVMnpiNUl3bzAxamR4TU4xVzJhaU44UHh3VmpoIiwiaWF0IjoxNTI0MTczMDkwLCJleHAiOjE1MjQyMDkwOTB9.VO6PM2O0jnXpwE3N4YF1mxOmxxCS0mOk1akZAFktjdY']
-]
+run.args = []
 
 configurations {
     provided
