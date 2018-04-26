@@ -51,6 +51,7 @@ public class PortlandPDFlight {
 
                 .addEntity( "PortlandPDArrestee" )  //variable name within flight. Doesn't have to match anything anywhere else
                     .to( "PortlandPDArrestee" )       //name of entity set belonging to
+                    .entityIdGenerator(row -> UUID.randomUUID().toString())
                     .addProperty( "nc.PersonGivenName", "Arrestee First Name" )           //arrest report number
                     .addProperty( "nc.PersonMiddleName", "Arrestee Middle Name" )
                     .addProperty( "nc.PersonSurName", "Arrestee Last Name" )
@@ -78,7 +79,8 @@ public class PortlandPDFlight {
                 .addEntity( "PortlandPDOfficer" )
                     .to("PortlandPDOfficer")
                     .addProperty( "publicsafety.officerid", "Arresting Officer #" )    //unique ID for address
-                 .endEntity()
+                    .addProperty( "publicsafety.personnelid", "Arresting Officer #" )    //unique ID for address
+                .endEntity()
 
                 .endEntities()
 
@@ -87,19 +89,20 @@ public class PortlandPDFlight {
                 .to( "PortlandPDArrestedIn" )
                 .fromEntity( "PortlandPDArrestee" )
                 .toEntity( "PortlandPDIncident" )
-                .entityIdGenerator(row -> UUID.randomUUID().toString())
+//                .entityIdGenerator(row -> UUID.randomUUID().toString())
 //                    .addProperty( "ol.arrestdate" )
 //                    .value( row -> dtHelper.parseDate( row
 //                            .getAs( "Arrest Date" ) ) )   //these rows are shorthand for a full function .value as below
 //                    .ok()
                     .addProperty( "location.address" ).value( PortlandPDFlight::standardAddress ).ok()
-                    .addProperty( "ol.arrestcategory", "ARREST TYPE (186) eng" )
+                    .addProperty( "ol.arrestcategory").value( PortlandPDFlight::category ).ok()
+                    .addProperty( "arrestedin.id").value( PortlandPDFlight::arrestID ).ok()
                     .addProperty( "criminaljustice.casenumber", "Arrest Charges Case #" )
-                    .addProperty( "criminaljustice.nibrs", "UCR OFFN CODE (47) eng" )
+                .addProperty( "criminaljustice.nibrs" ).value( PortlandPDFlight::offensecode ).ok()
                     .addProperty( "ol.numberofcounts", "Adult Arrest Charge Seq #" )
                     .addProperty( "ol.mapreference", "Map Ref# of Arst" )
                     .addProperty( "person.ageatevent").value( row -> Parsers.parseInt( row.getAs("Arrestee Age")) ).ok()
-                    .addProperty( "j.ArrestCharge", "ARREST STATE CHARGE (7) eng" )
+                    .addProperty( "j.ArrestCharge").value( PortlandPDFlight::category ).ok()
                 .endAssociation()
 
                 .addAssociation( "PortlandPDArrestedBy" )
@@ -142,7 +145,9 @@ public class PortlandPDFlight {
                 race = "asian/pacisland";
             } else if ( sr.equals( "BLACK" ) ) {
                 race = "black";
-            } else if ( sr.equals( "UNKNOWN" ) | sr.equals( "HISPANIC" ) | sr.equals( "AMERICAN INDIAN / ALASKAN NATIVE" ) | sr.equals( "* Race *" )) {
+            } else if (sr.equals( "AMERICAN INDIAN / ALASKAN NATIVE" ) ) {
+                race = "amindian";
+        } else if ( sr.equals( "UNKNOWN" ) | sr.equals( "HISPANIC" ) | sr.equals( "* Race *" )) {
                 race = "";
             } else if ( sr.equals( "WHITE" ) ) {
                 race = "white";
@@ -166,6 +171,15 @@ public class PortlandPDFlight {
         return null;
     }
 
+
+    public static String personID( Row row ) {
+        String fn = row.getAs( "Arrestee First Name" );
+        String ln = row.getAs( "Arrestee Last name" );
+        String dob = row.getAs( "Arrestee DOB Date" );
+        String id = fn+"_"+ln+"_"+dob;
+        return id;
+    }
+
     public static String standardSex( Row row ) {
         String sex = "";
         String sr = row.getAs( "ARRESTEE SEX (10) eng" );
@@ -186,6 +200,33 @@ public class PortlandPDFlight {
         return total;
     }
 
+    public static String arrestID( Row row ) {
+        String arrcase = row.getAs( "Arrest Charges Case #" );
+        String arrcha = row.getAs( "Adult Arrest Charge Seq #" );
+        String arrestid = arrcase + " " + arrcha;
+        return arrestid;
+    }
+
+
+    public static String category( Row row ) {
+        String sr = row.getAs( "ARREST TYPE (186) eng" );
+        if ( sr != null ) {
+            if ( sr.equals( "Type of Arrest" ) ) {
+                return "";
+            }
+        }
+        return sr;
+    }
+
+    public static String offensecode( Row row ) {
+        String sr = row.getAs( "UCR OFFN CODE (47) eng" );
+        if ( sr != null ) {
+            if ( sr.equals( "* UCR CHARGE *" ) ) {
+                return "";
+            }
+        }
+        return "";
+    }
 }
 
 
